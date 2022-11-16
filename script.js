@@ -4,6 +4,17 @@ const buttonColors = [`red`, `blue`, `green`, `yellow`];
 const gamePattern = [];
 const chosenCol = [];
 
+let started = false;
+let level = 0;
+
+$(document).keydown(function () {
+    if (!started) {
+        $(`#level-title`).text(`Level ` + level);
+        nextSequence();
+        started = true;
+    }
+});
+
 // users choise of colors gets stored in chosenCol
 $(`.btn`).click(function () {
     let userChoice = $(this).attr(`id`);
@@ -13,6 +24,9 @@ $(`.btn`).click(function () {
 });
 
 const nextSequence = function () {
+    level++;
+    $(`#level-title`).text(`Level ` + level);
+
     const randomNum = Math.trunc(Math.random() * 4);
     const randomCol = buttonColors[randomNum];
     gamePattern.push[randomCol];
