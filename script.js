@@ -9,6 +9,7 @@ $(`.btn`).click(function () {
     let userChoice = $(this).attr(`id`);
     chosenCol.push(userChoice);
     playSound(userChoice);
+    animPress(userChoice);
 });
 
 const nextSequence = function () {
@@ -28,4 +29,11 @@ const nextSequence = function () {
 const playSound = (name) => {
     const audio = new Audio(`sounds/` + name + `.mp3`);
     audio.play();
+};
+
+const animPress = function (curColor) {
+    $(`#` + curColor).addClass(`pressed`);
+    setTimeout(function () {
+        $(`#` + curColor).removeClass(`pressed`);
+    }, 100);
 };
