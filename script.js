@@ -6,8 +6,9 @@ const chosenCol = [];
 
 // users choise of colors gets stored in chosenCol
 $(`.btn`).click(function () {
-    const userChoise = $(this).attr(`id`);
-    chosenCol.push(userChoise);
+    let userChoice = $(this).attr(`id`);
+    chosenCol.push(userChoice);
+    playSound(userChoice);
 });
 
 const nextSequence = function () {
@@ -20,8 +21,11 @@ const nextSequence = function () {
         .fadeOut(100)
         .fadeIn(100);
 
-    const audio = new Audio(`sounds/` + randomCol + `.mp3`);
-    audio.play;
+    playSound(randomCol);
 };
 
-nextSequence();
+// plays audio
+const playSound = (name) => {
+    const audio = new Audio(`sounds/` + name + `.mp3`);
+    audio.play();
+};
